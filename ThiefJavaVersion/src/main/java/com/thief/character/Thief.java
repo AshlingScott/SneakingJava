@@ -9,21 +9,25 @@ getting a treasure back to their base*/
 public abstract class Thief extends Unit
 {
     // Whether the thief is alive or dead
-    boolean alive;
+    boolean alive, has_treasure;
+    // How much health the thief has
+    int hp;
 
-    public Thief(int m, int v, int e_g, Tile loc) 
+    public Thief()
     {
-        super(m, v, e_g, loc);
+        super();
         alive = true;
+        has_treasure = false;
     }
-    
+
     //kills the thief
     @Override
     public void kill()
     {
+        location = null;
         alive = false;
     }
-    
+
     // Thieves can walk through field and forest
     // refreshes their vision through visible_tiles set
     public void move(Tile target, Map map)
@@ -41,24 +45,24 @@ public abstract class Thief extends Unit
         }
         else
             System.out.println("Thief can't move there.");
-        
-        
+
+
     }
-    
+
     // Get set of tiles in vision range of type 0 or 1
     public HashSet<Tile> get_vision(Map map)
     {
         HashSet<Tile> vision_tiles = new HashSet<>();
         // Grab a square based on Units vision
-        ArrayList<Tile> grab_vision = map.grab_square(map, this.location, 
+        ArrayList<Tile> grab_vision = map.grab_square(map, this.location,
                                         this.vision);
         // Adds only tiles of type 1 or 0 to returning set
-        for (Tile tile : grab_vision) 
+        for (Tile tile : grab_vision)
         {
             if (tile.type <= 1)
                 vision_tiles.add(tile);
         }
-        
+
         return vision_tiles;
     }
 }

@@ -16,11 +16,11 @@ public class Test {
         ArrayList<Thief> thieves_list;
         
         // Create test Units, a druid and a golem
-        Druid dru = new Druid(5, 7, 4, map.tile_list.get(0));
+        Druid dru = new Druid();
         map.tile_list.get(0).occupied = true;
         map.tile_list.get(0).occupant = dru;
         
-        Golem gol = new Golem(4, 2, 7, map.tile_list.get(99));
+        Golem gol = new Golem();
         map.tile_list.get(99).occupied = true;
         map.tile_list.get(99).occupant = gol;
         

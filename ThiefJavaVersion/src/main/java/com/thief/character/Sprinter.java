@@ -5,12 +5,29 @@ import com.thief.map.Tile;
 //Sprinter is the fastest thief, but lacks any talent in being sneaky
 public class Sprinter extends Thief
 {
+
+    public Sprinter() {
+        super();
+        location = null;
+        hp = 2;
+
+        // Roll the random stats
+        Random rand = new Random();
+        int roll = rand.nextInt(5,8);
+        movement = roll;
+        roll = rand.nextInt(4,7);
+        vision = roll;
+        roll = rand.nextInt(2,4);
+        energy_gain = roll;
+    }
+
+
     @Override
     public String get_symbol()
     {
         return "S";
     }
-    
+
     @Override
     public void print_stats()
     {
@@ -20,14 +37,14 @@ public class Sprinter extends Thief
         System.out.println("Energy: " + energy);
         System.out.println("Energy Gain: " + energy_gain);
     }
-    
+
     // Gain a burst of speed for a duration
     public void sprint()
     {
         energy -= 3;
         movement += 3;
     }
-    
+
     // Throw the treasure to another Thief
     public void toss(Thief target)
     {
@@ -36,9 +53,9 @@ public class Sprinter extends Thief
             energy -= 2;
             target.has_treasure = true;
             has_treasure = false;
-        }        
+        }
     }
-    
+
     // Leap into the air, can jump over rocks and trees
     public void vault(Tile target)
     {
